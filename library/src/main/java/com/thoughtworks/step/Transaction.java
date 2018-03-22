@@ -14,7 +14,7 @@ public class Transaction {
         return balanceBefore;
     }
 
-    public double getBalanceAfter() {
+    public double transact() {
         return balanceAfter;
     }
 

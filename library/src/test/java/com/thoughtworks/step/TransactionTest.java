@@ -10,7 +10,7 @@ public class TransactionTest {
     public void checkingProperties() {
         Transaction trans = new Transaction(1000,1000,2000);
         assertThat(trans.getBalanceBefore(),is(1000.0));
-        assertThat(trans.getBalanceAfter(),is(2000.0));
+        assertThat(trans.transact(),is(2000.0));
         assertThat(trans.getTransactingAmount(),is(1000.0));
     }
 }
