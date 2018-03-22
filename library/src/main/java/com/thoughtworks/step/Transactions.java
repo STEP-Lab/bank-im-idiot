@@ -3,11 +3,7 @@ package com.thoughtworks.step;
 import java.util.ArrayList;
 
 public class Transactions {
-    private ArrayList<Transaction> log;
-
-    public Transactions() {
-        this.log = new ArrayList<>();
-    }
+    private ArrayList<Transaction> log = new ArrayList<>();
 
     public boolean addTransaction(Transaction trans) {
         return this.log.add(trans);

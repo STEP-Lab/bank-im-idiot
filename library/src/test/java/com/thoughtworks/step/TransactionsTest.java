@@ -8,7 +8,7 @@ public class TransactionsTest {
     @Test
     public void checkTransactions() {
         Transactions transactions = new Transactions();
-        Transaction trans = new Transaction();
+        Transaction trans = new Transaction(1,1,2);
         assertTrue(transactions.addTransaction(trans));
         assertTrue(transactions.getRecentTransaction().equals(trans));
     }
