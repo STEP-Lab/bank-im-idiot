@@ -14,15 +14,11 @@ public class Account {
     }
 
     private void validateAccountNumber(String accountNumber) throws InvalidAccountNumberException {
-        if(!accountNumber.matches("\\d{4}-\\d{4}")){
-            throw new InvalidAccountNumberException();
-        }
+        if(!accountNumber.matches("\\d{4}-\\d{4}")) throw new InvalidAccountNumberException();
     }
 
     private void validateMinimumBalance(double balance) throws MinimumBalanceException {
-        if(balance<minimumBalance){
-            throw new MinimumBalanceException();
-        }
+        if(balance<minimumBalance) throw new MinimumBalanceException();
     }
 
     public String getAccountNumber() {
@@ -42,9 +38,7 @@ public class Account {
     }
 
     public double debit(double amount) throws InsufficientFundsException {
-        if(minimumBalance>balance-amount){
-            throw new InsufficientFundsException();
-        }
+        if(minimumBalance>balance-amount) throw new InsufficientFundsException();
         return balance-=amount;
     }
 }
