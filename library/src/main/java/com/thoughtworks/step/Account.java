@@ -2,7 +2,8 @@ package com.thoughtworks.step;
 
 public class Account {
     private final String name,accountNumber;
-    private final double balance,minimumBalance=1000;
+    private double balance;
+    private final double minimumBalance=1000;
 
     public Account(String name, String accountNumber,double balance) throws MinimumBalanceException, InvalidAccountNumberException {
         this.name = name;
@@ -30,5 +31,20 @@ public class Account {
 
     public String getName() {
         return name;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public double credit(double amount) {
+        return balance+=amount;
+    }
+
+    public double debit(double amount) throws InsufficientFundsException {
+        if(minimumBalance>balance-amount){
+            throw new InsufficientFundsException();
+        }
+        return balance-=amount;
     }
 }

@@ -33,4 +33,23 @@ public class AccountTest {
     public void validateAccountNumber() throws MinimumBalanceException, InvalidAccountNumberException {
         new Account("Peter","1234-123",1000);
     }
+
+    @Test
+    public void testCredit() {
+        account.credit(1000);
+        assertThat(account.getBalance(),is(2000.0));
+    }
+
+    @Test
+    public void testDebit() throws InsufficientFundsException {
+        account.credit(1000);
+        account.debit(100);
+        assertThat(account.getBalance(),is(1900.0));
+    }
+
+    @Test(expected = InsufficientFundsException.class)
+    public void CheckInsufficentFunds() throws MinimumBalanceException, InvalidAccountNumberException, InsufficientFundsException {
+        Account acc=new Account("Tony Stark","1212-1212",2000);
+        acc.debit(10000);
+    }
 }
