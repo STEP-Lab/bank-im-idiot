@@ -34,11 +34,14 @@ public class Account {
     }
 
     public double credit(double amount) {
-        return balance+=amount;
+        CreditTransaction trans=new CreditTransaction(balance,amount);
+        return balance=trans.transact();
     }
 
     public double debit(double amount) throws InsufficientFundsException {
-        if(minimumBalance>balance-amount) throw new InsufficientFundsException();
-        return balance-=amount;
+        DebitTransaction trans= new DebitTransaction(balance,amount);
+        double remainingBalance=trans.transact();
+        if(minimumBalance>remainingBalance) throw new InsufficientFundsException();
+        return balance=remainingBalance;
     }
 }
