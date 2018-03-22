@@ -1,24 +1,24 @@
 package com.thoughtworks.step;
 
-public class Transaction {
+import java.util.Date;
+
+public abstract class Transaction {
 
     private final double balanceBefore,amount,balanceAfter;
+    private final Date date;
 
-    public Transaction(double balanceBefore, double amount, double balanceAfter) {
+    public Transaction(Date date, double balanceBefore, double amount, double balanceAfter) {
+        this.date=date;
         this.balanceBefore = balanceBefore;
         this.amount = amount;
         this.balanceAfter = balanceAfter;
-    }
-
-    public double getBalanceBefore() {
-        return balanceBefore;
     }
 
     public double transact() {
         return balanceAfter;
     }
 
-    public double getTransactingAmount() {
-        return amount;
+    public Date getDate() {
+        return date;
     }
 }

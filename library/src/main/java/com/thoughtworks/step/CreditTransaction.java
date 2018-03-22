@@ -1,8 +1,10 @@
 package com.thoughtworks.step;
 
+import java.util.Date;
+
 public class CreditTransaction extends Transaction{
 
-    public CreditTransaction(double balance, double amount) {
-        super(balance,amount,balance+amount);
+    public CreditTransaction(Date date, double balance, double amount) {
+        super(date,balance,amount,balance+amount);
     }
 }
