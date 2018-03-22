@@ -2,6 +2,7 @@ package com.thoughtworks.step;
 
 public class Account {
     private final String name,accountNumber;
+    private final Transactions transactions;
     private double balance;
     private final double minimumBalance=1000;
 
@@ -11,6 +12,7 @@ public class Account {
         this.accountNumber = accountNumber;
         validateMinimumBalance(balance);
         this.balance=balance;
+        this.transactions=new Transactions();
     }
 
     private void validateAccountNumber(String accountNumber) throws InvalidAccountNumberException {
@@ -29,12 +31,9 @@ public class Account {
         return name;
     }
 
-    public double getBalance() {
-        return balance;
-    }
-
     public double credit(double amount) {
         CreditTransaction trans=new CreditTransaction(balance,amount);
+        transactions.addTransaction(trans);
         return balance=trans.transact();
     }
 
@@ -42,6 +41,7 @@ public class Account {
         DebitTransaction trans= new DebitTransaction(balance,amount);
         double remainingBalance=trans.transact();
         if(minimumBalance>remainingBalance) throw new InsufficientFundsException();
+        transactions.addTransaction(trans);
         return balance=remainingBalance;
     }
 }
