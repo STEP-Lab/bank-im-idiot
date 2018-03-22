@@ -1,0 +1,17 @@
+build/
+.idea/
+.settings/
+gradle/
+gradlew
+gradlew.bat
+.gradle/
+.project
+application/build
+application/out
+application/.settings
+library/build
+library/out
+library/.settings
+out/
+*.iml
+bin/
