@@ -1,6 +1,7 @@
 package com.thoughtworks.step;
 
 import java.util.Date;
+import java.util.Objects;
 
 public abstract class Transaction {
 
@@ -20,5 +21,12 @@ public abstract class Transaction {
 
     public Date getDate() {
         return date;
+    }
+
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(balanceBefore, amount, balanceAfter, date);
     }
 }
