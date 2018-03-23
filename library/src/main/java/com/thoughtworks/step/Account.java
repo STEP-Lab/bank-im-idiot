@@ -3,29 +3,25 @@ package com.thoughtworks.step;
 import java.util.Date;
 
 public class Account {
-    private final String name,accountNumber;
+    private final String name;
+    private final AccountNumber accountNumber;
     private final Transactions transactions;
     private double balance;
     private final double minimumBalance=1000;
 
-    public Account(String name, String accountNumber,double balance) throws MinimumBalanceException, InvalidAccountNumberException {
+    public Account(String name, AccountNumber accountNumber, double balance) throws MinimumBalanceException{
         this.name = name;
-        validateAccountNumber(accountNumber);
         this.accountNumber = accountNumber;
         validateMinimumBalance(balance);
         this.balance=balance;
         this.transactions=new Transactions();
     }
 
-    private void validateAccountNumber(String accountNumber) throws InvalidAccountNumberException {
-        if(!accountNumber.matches("\\d{4}-\\d{4}")) throw new InvalidAccountNumberException();
-    }
-
     private void validateMinimumBalance(double balance) throws MinimumBalanceException {
         if(balance<minimumBalance) throw new MinimumBalanceException();
     }
 
-    public String getAccountNumber() {
+    public AccountNumber getAccountNumber() {
         return accountNumber;
     }
 
