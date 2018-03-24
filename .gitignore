@@ -9,9 +9,8 @@ gradlew.bat
 application/build
 application/out
 application/.settings
-library/build
-library/out
 library/.settings
 out/
-*.iml
 bin/
+library/src/main/resources/
+library/src/test/resources/

@@ -17,10 +17,9 @@ public class TransactionsTest {
 
     @Test
     public void checkForCreditTransactions() {
-        Date date=new Date();
         double balance=1000,amount=50000;
-        transactions.credit(date,balance,amount);
-        CreditTransaction trans = new CreditTransaction(date,balance,amount);
+        transactions.credit(new Date(),balance,amount);
+        CreditTransaction trans = new CreditTransaction(balance,amount, "IND");
         assertThat(transactions.getRecentTransaction().hashCode(),is(trans.hashCode()));
     }
 
@@ -29,7 +28,7 @@ public class TransactionsTest {
         Date date=new Date();
         double balance=10000,amount=50000;
         transactions.debit(date,balance,amount);
-        DebitTransaction trans = new DebitTransaction(date,balance,amount);
+        DebitTransaction trans = new DebitTransaction(balance,amount,"BOI");
         assertThat(transactions.getRecentTransaction().hashCode(),is(trans.hashCode()));
     }
 }

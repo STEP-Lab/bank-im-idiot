@@ -26,7 +26,6 @@ public abstract class Transaction {
 
     @Override
     public int hashCode() {
-
-        return Objects.hash(balanceBefore, amount, balanceAfter, date);
+        return Objects.hash(balanceBefore, amount, balanceAfter);
     }
 }

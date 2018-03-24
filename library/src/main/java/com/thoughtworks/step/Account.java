@@ -34,10 +34,8 @@ public class Account {
     }
 
     public double debit(double amount) throws InsufficientFundsException {
-        DebitTransaction trans= new DebitTransaction(new Date(), balance,amount);
-        double remainingBalance=trans.transact();
+        double remainingBalance=transactions.debit(new Date(),balance,amount);
         if(minimumBalance>remainingBalance) throw new InsufficientFundsException();
-     //transactions.addTransaction(trans);
         return balance=remainingBalance;
     }
 }

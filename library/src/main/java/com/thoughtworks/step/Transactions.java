@@ -15,13 +15,13 @@ public class Transactions {
     }
 
     public double credit(Date date, double balance, double amount) {
-        CreditTransaction creditTransaction = new CreditTransaction(date, balance, amount);
+        CreditTransaction creditTransaction = new CreditTransaction(date, balance, amount, "SBI IND");
         this.addTransaction(creditTransaction);
         return creditTransaction.transact();
     }
 
     public double debit(Date date, double balance, double amount) {
-        DebitTransaction debitTransaction = new DebitTransaction(date, balance, amount);
+        DebitTransaction debitTransaction = new DebitTransaction(date, balance, amount, "AXIS B");
         this.addTransaction(debitTransaction);
         return debitTransaction.transact();
     }
