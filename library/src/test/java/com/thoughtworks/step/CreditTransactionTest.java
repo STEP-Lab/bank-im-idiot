@@ -26,6 +26,6 @@ public class CreditTransactionTest {
 
     @Test
     public void checkCreditedFromWhom() {
-        assertThat(creditTrans.fromWhom(),is("IND"));
+        assertThat(creditTrans.getSource(),is("IND"));
     }
 }

@@ -1,7 +1,5 @@
 package com.thoughtworks.step;
 
-import java.util.Date;
-
 public class Account {
     private final String name;
     private final AccountNumber accountNumber;
@@ -30,14 +28,14 @@ public class Account {
     }
 
     public double credit(double amount) {
-        transactions.credit(new Date(), balance,amount);
+        transactions.credit(balance,amount, "SBI HYD");
         return balance=balance+amount;
     }
 
     public double debit(double amount) throws InsufficientFundsException {
         double remainingBalance=balance-amount;
         if(minimumBalance>remainingBalance) throw new InsufficientFundsException();
-        transactions.debit(new Date(),balance,amount);
+        transactions.debit(balance,amount,"WB");
         return balance=remainingBalance;
     }
 }

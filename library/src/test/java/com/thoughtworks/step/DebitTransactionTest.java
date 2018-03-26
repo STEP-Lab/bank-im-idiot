@@ -25,6 +25,6 @@ public class DebitTransactionTest {
 
     @Test
     public void checkDebitedToWhom() {
-        assertThat(debitTransaction.toWhom(),is("IBACO"));
+        assertThat(debitTransaction.getSource(),is("IBACO"));
     }
 }
