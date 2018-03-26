@@ -18,11 +18,6 @@ public class CreditTransactionTest {
     }
 
     @Test
-    public void shouldAddAmountToBalance() {
-        assertThat(creditTrans.transact(),is(2000.0));
-    }
-
-    @Test
     public void checkDate() {
         Date date=new Date();
         CreditTransaction creditTrans = new CreditTransaction(date,1000, 1000, "IND");

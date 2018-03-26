@@ -17,11 +17,6 @@ public class DebitTransactionTest {
     }
 
     @Test
-    public void shouldSubtractFromBalance() {
-        assertThat(debitTransaction.transact(),is(1001.0));
-    }
-
-    @Test
     public void checkDate() {
         Date date=new Date();
         DebitTransaction debitTrans = new DebitTransaction(date,1000, 1000,"SBI");

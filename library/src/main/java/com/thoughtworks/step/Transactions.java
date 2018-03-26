@@ -14,15 +14,13 @@ public class Transactions {
         return this.log.get(this.log.size()-1);
     }
 
-    public double credit(Date date, double balance, double amount) {
+    public void credit(Date date, double balance, double amount) {
         CreditTransaction creditTransaction = new CreditTransaction(date, balance, amount, "SBI IND");
         this.addTransaction(creditTransaction);
-        return creditTransaction.transact();
     }
 
-    public double debit(Date date, double balance, double amount) {
+    public void debit(Date date, double balance, double amount) {
         DebitTransaction debitTransaction = new DebitTransaction(date, balance, amount, "AXIS B");
         this.addTransaction(debitTransaction);
-        return debitTransaction.transact();
     }
 }

@@ -5,18 +5,13 @@ import java.util.Objects;
 
 public abstract class Transaction {
 
-    private final double balanceBefore,amount,balanceAfter;
+    private final double balanceBefore,amount;
     private final Date date;
 
-    public Transaction(Date date, double balanceBefore, double amount, double balanceAfter) {
+    public Transaction(Date date, double balanceBefore, double amount) {
         this.date=date;
         this.balanceBefore = balanceBefore;
         this.amount = amount;
-        this.balanceAfter = balanceAfter;
-    }
-
-    public double transact() {
-        return balanceAfter;
     }
 
     public Date getDate() {
@@ -26,6 +21,6 @@ public abstract class Transaction {
 
     @Override
     public int hashCode() {
-        return Objects.hash(balanceBefore, amount, balanceAfter);
+        return Objects.hash(balanceBefore, amount);
     }
 }

@@ -30,12 +30,14 @@ public class Account {
     }
 
     public double credit(double amount) {
-        return balance=transactions.credit(new Date(), balance,amount);
+        transactions.credit(new Date(), balance,amount);
+        return balance=balance+amount;
     }
 
     public double debit(double amount) throws InsufficientFundsException {
-        double remainingBalance=transactions.debit(new Date(),balance,amount);
+        double remainingBalance=balance-amount;
         if(minimumBalance>remainingBalance) throw new InsufficientFundsException();
+        transactions.debit(new Date(),balance,amount);
         return balance=remainingBalance;
     }
 }
