@@ -3,6 +3,9 @@ package com.thoughtworks.step;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.ArrayList;
+import java.util.Date;
+
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.core.IsCollectionContaining.hasItem;
 import static org.junit.Assert.assertThat;
@@ -76,11 +79,62 @@ public class TransactionsTest {
     @Test
     public void checkFilteredDebitTransaction() {
         transactions.debit(1000,1500,"IND");
+        transactions.credit(5000,100,"VEN" );
+        transactions.debit(2500,15000,"VEN");
+        DebitTransaction debitTrans,debitTransaction;
+        debitTrans = new DebitTransaction(1000,1500, "IND");
+        debitTransaction = new DebitTransaction(2500,15000, "VEN");
+        assertThat(transactions.filterDebitTransactions().log,hasItems(debitTrans,debitTransaction));
+    }
+
+    @Test
+    public void checkTransactionsBefore() {
+        transactions.debit(1000,1500,"IND");
         transactions.debit(2500,15000,"VEN");
         transactions.credit(5000,100,"VEN" );
         DebitTransaction debitTrans,debitTransaction;
         debitTrans = new DebitTransaction(1000,1500, "IND");
-        debitTransaction = new DebitTransaction(1000,1500, "IND");
-        assertThat(transactions.filterDebitTransactions().log,hasItems(debitTrans,debitTransaction));
+        debitTransaction = new DebitTransaction(2500,15000, "VEN");
+        CreditTransaction creditTransaction=new CreditTransaction(5000,100,"VEN");
+        ArrayList<Transaction> log=transactions.transactionsBefore(new Date(2018-1900,11,31)).log;
+        assertThat(log,hasItems(debitTrans,debitTransaction,creditTransaction));
+    }
+
+    @Test
+    public void checkTransactionAfter() {
+        transactions.debit(1000,1500,"IND");
+        transactions.debit(2500,15000,"VEN");
+        transactions.credit(5000,100,"VEN" );
+        DebitTransaction debitTrans,debitTransaction;
+        debitTrans = new DebitTransaction(1000,1500, "IND");
+        debitTransaction = new DebitTransaction(2500,15000, "VEN");
+        CreditTransaction creditTransaction=new CreditTransaction(5000,100,"VEN");
+        ArrayList<Transaction> log=transactions.transactionsAfter(new Date(2017-1900,11,31)).log;
+        assertThat(log,hasItems(debitTrans,debitTransaction,creditTransaction));
+    }
+
+    @Test
+    public void checkTransactionOnASpecificDate() {
+        transactions.debit(1000,1500,"IND");
+        transactions.debit(2500,15000,"VEN");
+        transactions.credit(5000,100,"VEN" );
+        DebitTransaction debitTrans,debitTransaction;
+        debitTrans = new DebitTransaction(1000,1500, "IND");
+        debitTransaction = new DebitTransaction(2500,15000, "VEN");
+        CreditTransaction creditTransaction=new CreditTransaction(5000,100,"VEN");
+        assertThat(transactions.transactionsOn(new Date()).log,hasItems(debitTrans,debitTransaction,creditTransaction));
+    }
+
+    @Test
+    public void checkTransactionInBetweenDates() {
+        transactions.debit(1000,1500,"IND");
+        transactions.debit(2500,15000,"VEN");
+        transactions.credit(5000,100,"VEN" );
+        DebitTransaction debitTrans,debitTransaction;
+        debitTrans = new DebitTransaction(1000,1500, "IND");
+        debitTransaction = new DebitTransaction(2500,15000, "VEN");
+        CreditTransaction creditTransaction=new CreditTransaction(5000,100,"VEN");
+        Transactions trans=transactions.transactionsBetween(new Date(2018-1900,02,27),new Date(2018-1900,02,29));
+        assertThat(trans.log,hasItems(debitTrans,debitTransaction,creditTransaction));
     }
 }

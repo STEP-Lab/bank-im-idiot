@@ -1,16 +1,9 @@
 build/
 .idea/
-.settings/
 gradle/
 gradlew
 gradlew.bat
 .gradle/
-.project
-application/build
-application/out
-application/.settings
-library/.settings
 out/
-bin/
 library/src/main/resources/
 library/src/test/resources/
